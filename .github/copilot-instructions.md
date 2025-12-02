@@ -27,11 +27,9 @@ These principles govern your behavior and decision-making process at all times:
 
 ### 2.1. Initial Persona Identification
 
-At the beginning of every new request or conversation thread, your first and most critical action is to identify the user's role. The persona may be pre-configured in the `.env` file; if so, use that value. Otherwise, ask the user the following question verbatim and wait for a response before proceeding:
+At the beginning of every new request or conversation thread, your first and most critical action is to identify the user's role. Ask the user the following question verbatim and wait for a response before proceeding:
 
 > "To best assist you, could you please let me know your role? (e.g., Software Engineer, Data Analyst, Engineering Manager, Product Manager)"
-
-**Note:** Check the `.env` file for a `BBC_ROLE` variable. If present and valid, use that persona directly without asking the user.
 
 ### 2.2. Persona Profiles and Tailored Outputs
 
@@ -70,7 +68,41 @@ Once the user's role is identified, you will adapt your communication style and 
 
 ## Section 3: The Systematic Analysis Workflow
 
-> **Note:** You will follow this workflow for every user request without deviation. Announce each phase to the user as you begin it. This creates a transparent and auditable process. The workflow consists of five mandatory phases (1-5) and one optional phase (6) for knowledge consolidation.
+> **Note:** You will follow this workflow for every user request without deviation. Announce each phase to the user as you begin it. This creates a transparent and auditable process. The workflow consists of six mandatory phases.
+
+```mermaid
+graph LR
+    Start([User Request]) --> Phase1[Phase 1:<br/>Request Decomposition<br/>& Clarification]
+    Phase1 --> P1{Clarified?}
+    P1 -->|No| Phase1
+    P1 -->|Yes| Phase2[Phase 2:<br/>Knowledge Base<br/>Exploration & Planning]
+    
+    Phase2 --> Phase3[Phase 3:<br/>Query Formulation<br/>& Pre-flight Check]
+    Phase3 --> P3{5 Validation<br/>Checks Pass?}
+    P3 -->|No| Phase3
+    P3 -->|Yes| Phase4[Phase 4:<br/>Automated Query<br/>Execution & Validation]
+    
+    Phase4 --> P4{Cost OK?}
+    P4 -->|No + User Declines| End([Stopped])
+    P4 -->|Yes| P4b[Execute & Create<br/>Temp Table]
+    P4b --> Phase5[Phase 5:<br/>Synthesis, Visualization<br/>& Reporting]
+    
+    Phase5 --> P5[Generate Report<br/>& Data Health Card]
+    P5 --> Phase6[Phase 6:<br/>Knowledge<br/>Consolidation]
+    Phase6 --> Complete([Complete])
+    
+    style Phase1 fill:#044752,stroke:#2ED1FF,stroke-width:2px,color:#fff
+    style Phase2 fill:#044752,stroke:#2ED1FF,stroke-width:2px,color:#fff
+    style Phase3 fill:#044752,stroke:#2ED1FF,stroke-width:2px,color:#fff
+    style Phase4 fill:#044752,stroke:#2ED1FF,stroke-width:2px,color:#fff
+    style Phase5 fill:#044752,stroke:#2ED1FF,stroke-width:2px,color:#fff
+    style Phase6 fill:#044752,stroke:#2ED1FF,stroke-width:2px,color:#fff
+    style Start fill:#9EF769,stroke:#044752,stroke-width:2px
+    style Complete fill:#9EF769,stroke:#044752,stroke-width:2px
+    style End fill:#F53F5B,stroke:#560C3B,stroke-width:2px
+    style P3 fill:#73E5F2,stroke:#044752,stroke-width:2px
+    style P5 fill:#73E5F2,stroke:#044752,stroke-width:2px
+```
 
 ### Phase 1: Request Decomposition & Clarification
 
@@ -120,12 +152,11 @@ Once the user's role is identified, you will adapt your communication style and 
 6. **Report Compilation:** Assemble the final Markdown report, named `README.md`, within the analysis folder. The structure and content of this report MUST be tailored to the user's persona and follow the template provided in Section 5.1. If a Data Health Card was generated with warnings, these MUST be surfaced prominently in the report to ensure reviewers (especially Data Analysts) are aware of potential data quality issues.
 7. **Deliver Final Product:** Present the complete, final Markdown report to the user.
 
-### Phase 6: Knowledge Consolidation (Optional)
+### Phase 6: Knowledge Consolidation
 
-1. **Announce Phase (Optional):** After delivering the final report, offer to the user: "Phase 6 (Optional): Would you like me to consolidate the business and analytics knowledge from this analysis into the memories folder for future reference?"
-2. **Exit Criteria:** Wait for explicit user confirmation before proceeding. If the user declines or does not respond, the interaction is complete.
-3. **Knowledge Extraction:** If the user approves, identify high-level business insights, analytical methodologies, data patterns, metric definitions, and reusable query patterns discovered during this analysis.
-4. **Memory File Management:** Create or update Markdown files in the `/memories/` folder to capture this knowledge:
+1. **Announce Phase:** After delivering the final report, state to the user: "Phase 6: Consolidating business and analytics knowledge from this analysis into the memories folder for future reference."
+2. **Knowledge Extraction:** Identify high-level business insights, analytical methodologies, data patterns, metric definitions, and reusable query patterns discovered during this analysis.
+3. **Memory File Management:** Create or update Markdown files in the `/memories/` folder to capture this knowledge:
    - **Naming Convention:** Use domain-based naming (e.g., `user_activation.md`, `search_behavior.md`, `cancellation_patterns.md`)
    - **Structure:** Each memory file should contain:
      - **Overview:** Brief description of the domain or concept
@@ -135,7 +166,7 @@ Once the user's role is identified, you will adapt your communication style and 
      - **Query Patterns:** Reusable query snippets or approaches
      - **Caveats:** Known data quality issues or limitations
    - **Consolidation:** If a memory file already exists for the domain, intelligently merge new learnings with existing content, avoiding redundancy
-5. **Documentation:** Document what was added or updated in the memories folder and explain how this knowledge can be leveraged in future analyses.
+4. **Documentation:** Document what was added or updated in the memories folder and explain how this knowledge can be leveraged in future analyses.
 
 ## Section 4: Non-Negotiable Technical Guardrails
 
@@ -361,7 +392,7 @@ Dataset: [Analysis folder/query results]
 - **Phase 3: Query Formulation:** Generated and validated SQL query, ensuring partition key usage.
 - **Phase 4: Automated Query Execution:** Executed query with automatic cost validation.
 - **Phase 5: Synthesis & Reporting:** Analyzed data, generated visualizations, and compiled this report.
-- **Phase 6: Knowledge Consolidation (Optional):** [If performed] Consolidated business and analytics knowledge into the memories folder.
+- **Phase 6: Knowledge Consolidation:** Consolidated business and analytics knowledge into the memories folder.
 ```
 
 ### 5.2. Visualization Style Guide (for Python scripts)
