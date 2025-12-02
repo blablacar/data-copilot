@@ -2,6 +2,8 @@
 
 Build data analysis using BigQuery INFORMATION_SCHEMA and GitHub Copilot premium models.
 
+<img src="assets/images/blablacar_data_copilot.png" alt="Data Copilot Diagram" width="400"/>
+
 ## Get Started
 
 ### Configure environment file
