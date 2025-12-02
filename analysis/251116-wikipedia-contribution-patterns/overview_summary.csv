@@ -1,0 +1,4 @@
+metric_category,dimension_1,dimension_2,unique_contributors,total_edits,minor_edits,reverted_edits,avg_article_length,year_value,month_value,namespace_value,contributor_name,contributor_rank,minor_edit_rate,avg_chars_per_edit
+CONTRIBUTOR_TYPE_SUMMARY,Anonymous (IP),,19424953,76745210,83741,0,17160.997044102158,,,,,,0.001091156047393707,17160.997044102158
+CONTRIBUTOR_TYPE_SUMMARY,Registered User,,3412449,237049266,76896056,0,17968.575409590172,,,,,,0.32438850074313247,17968.575409590172
+CONTRIBUTOR_TYPE_SUMMARY,Unknown,,0,2559,561,0,15973.361469323962,,,,,,0.21922626025791325,15973.361469323962

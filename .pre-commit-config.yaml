@@ -1,0 +1,30 @@
+repos:
+  - repo: local
+    hooks:
+        - id: md-to-html
+          name: Convert Markdown to HTML
+          entry: poetry run python src/querylog/md_to_html.py
+          language: system
+          files: ^analysis/.*\.md$
+          pass_filenames: true
+          stages: [commit]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.1.0
+    hooks:
+      - id: end-of-file-fixer
+        exclude: ^analysis/.*\.html$
+      - id: trailing-whitespace
+        exclude: ^analysis/.*\.html$
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.14.3
+    hooks:
+      # Run the linter.
+      - id: ruff-check
+        args: [ --fix ]
+        types_or: [ python, pyi ]
+      # Run the formatter.
+      - id: ruff-format
+        types_or: [ python, pyi ]

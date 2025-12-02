@@ -1,0 +1,74 @@
+[tool.poetry]
+name = "querylog"
+version = "0.1.0"
+description = "Scripts for querying BigQuery"
+authors = ["Thomas Pocreau <thomas@example.com>"]
+readme = "README.md"
+packages = [{include = "querylog", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "~3.11"
+google-cloud-bigquery = "^3.13.0"
+pandas = "^2.1.0"
+python-dotenv = "^1.0.0"
+click = "^8.1.0"
+pydantic = "^2.4.0"
+pydantic-settings = "^2.0.0"
+matplotlib = "^3.10.7"
+seaborn = "^0.13.2"
+numpy = "^2.3.3"
+db-dtypes = "^1.4.3"
+google-cloud-bigquery-storage = "^2.33.1"
+tabulate = "^0.9.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+ruff = "^0.14.3"
+mypy = "^1.6.0"
+pre-commit = "^3.5.0"
+markdown = "^3.5.0"
+
+[tool.poetry.scripts]
+run_query = "querylog.run_query:main"
+create_table_structure = "querylog.create_table_structure:main"
+add_usage_data = "querylog.add_usage_data:main"
+init_sample_data = "querylog.init_sample_data:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+# Set the maximum line length to 88 (same as Black)
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+# Enable the same checks as flake8, isort, and other tools
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort (import sorting)
+    "N",   # pep8-naming
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "SIM", # flake8-simplify
+]
+
+ignore = [
+    "E501",  # Line too long (handled by formatter)
+]
+
+[tool.ruff.format]
+# Use double quotes (Black's default)
+quote-style = "double"
+# Use spaces for indentation (Black's default)
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
