@@ -27,13 +27,11 @@ TABLE_FILTER_REGEX=
 
 ### Initialize Sample Data (Optional)
 
-Copy sample datasets from `bigquery-public-data` to your project:
+Copy sample datasets from `bigquery-public-data` to your project. This will generate data copy cost.
 
 ```shell
 poetry run init_sample_data
 ```
-
-You can filter datasets and tables using the environment variables or command-line arguments. See the [CHANGELOG_INIT_SAMPLE_DATA.md](CHANGELOG_INIT_SAMPLE_DATA.md) for details.
 
 ### Update Data Warehouse Table Structure
 
