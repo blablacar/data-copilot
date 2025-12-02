@@ -1,0 +1,11 @@
+airport_name,city,state_region,year,month,avg_percent_of_baseline
+McCarran International,Paradise,Nevada,2020,5,26.387096774193548
+Detroit Metropolitan Wayne County ,Romulus,Michigan,2020,5,38.54838709677419
+San Francisco International,South San Francisco,California,2020,4,38.60000000000001
+Denver International,Denver,Colorado,2020,4,38.63333333333334
+Washington Dulles International ,Floris,Virginia,2021,2,47.357142857142854
+LaGuardia,New York,New York,2021,2,47.67857142857143
+John F. Kennedy International,New York,New York,2020,4,47.73333333333333
+Daniel K. Inouye International ,Urban Honolulu,Hawaii,2021,8,48.2
+Hartsfield-Jackson Atlanta International ,College Park,Georgia,2021,1,50.2258064516129
+Seattle-Tacoma International ,SeaTac,Washington,2020,4,53.83333333333332
