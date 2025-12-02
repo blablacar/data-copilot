@@ -13,9 +13,9 @@ repos:
     rev: v2.1.0
     hooks:
       - id: end-of-file-fixer
-        exclude: ^analysis/.*\.html$
+        exclude: ^(analysis/.*\.html$|tables/)
       - id: trailing-whitespace
-        exclude: ^analysis/.*\.html$
+        exclude: ^(analysis/.*\.html$|tables/)
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
