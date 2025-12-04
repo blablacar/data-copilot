@@ -32,13 +32,13 @@ TABLE_FILTER_REGEX=
 Copy sample datasets from `bigquery-public-data` to your project. This will generate data copy cost.
 
 ```shell
-poetry run init_sample_data
+make init-samples
 ```
 
 ### Update Data Warehouse Table Structure
 
 ```shell
-make pull-queries    # Update all warehouse data and documentation
+make pull-queries
 ```
 
 ### Start Copilot
