@@ -162,7 +162,7 @@ def process_markdown_files(file_paths: list[str]) -> int:
 def main():
     """Main entry point for the script."""
     if len(sys.argv) < 2:
-        print("Usage: md_to_pdf.py <file1.md> [file2.md ...]")
+        print("Usage: md_to_html.py <file1.md> [file2.md ...]")
         print("Converts Markdown files to HTML format.")
         return 1
 
